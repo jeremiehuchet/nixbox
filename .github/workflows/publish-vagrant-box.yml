@@ -1,0 +1,16 @@
+name: publish to vagrantcloud
+
+on:
+  push:
+    branches: [ master publish-to-vagrantcloud ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install Nix
+      uses: cachix/install-nix-action@v8
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Build libvirt box
+      run: nix-shell --command packer build --only=qemu nixos-x86_64.json
