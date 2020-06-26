@@ -1,2 +1,6 @@
 language: nix
-script: nix-shell --run "packer build -debug --only=qemu nixos-x86_64.json"
+dist: bionic
+env:
+  - ARCH=i686
+  - ARCH=x86_64
+script: PACKER_LOG=1 nix-shell --run "packer build --only=qemu nixos-$ARCH.json"
