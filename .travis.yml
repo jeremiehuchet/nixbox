@@ -1,0 +1,2 @@
+language: nix
+script: nix-shell --run "packer build -debug --only=qemu nixos-x86_64.json"
